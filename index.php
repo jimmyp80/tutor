@@ -1,8 +1,10 @@
-<?php include 'includes/overall/header.php'; ?>
+<?php
+include 'core/init.php';
+include 'includes/overall/header.php';
+?>
     <div class="container-fluid py-4">
         <div class="row min-vh-80 h-100">
             <div class="col-12">
-
                 <div class="row mt-4">
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
