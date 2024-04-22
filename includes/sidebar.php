@@ -3,14 +3,14 @@
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="#" target="_blank">
             <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold text-white">Tutor CRM Ltd</span>
+            <span class="ms-1 font-weight-bold text-white">Your Company Ltd</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse w-auto max-height-vh-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white <?php if(basename($_SERVER['REQUEST_URI']) == 'index.php'){echo 'bg-info';} ?>" href="index.php">
+                <a class="nav-link text-white <?php if(basename($_SERVER['REQUEST_URI']) == 'dashboard.php'){echo 'bg-info';} ?>" href="dashboard.php">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
@@ -18,17 +18,19 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link text-white dropdown-toggle <?php if(basename($_SERVER['REQUEST_URI']) == 'clients.php'){echo 'bg-info';} ?>" href="#" role="button" data-bs-toggle="dropdown">
+                <a class="nav-link text-white <?php 
+                    if (basename($_SERVER['REQUEST_URI']) == 'clients.php' || basename($_SERVER['REQUEST_URI']) == 'students.php' || basename($_SERVER['REQUEST_URI']) == 'tutors.php') {echo 'bg-info';}?>"
+                    href="#peopleSidebar" role="button" data-bs-toggle="collapse">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">group</i>
                     </div>
                     <span class="nav-link-text ms-1">People</span>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="clients.php">Clients</a></li>
-                        <li><a class="dropdown-item" href="students.php">Students</a></li>
-                        <li><a class="dropdown-item" href="tutors.php">Tutors</a></li>
-                    </ul>
                 </a>
+                <div class="collapse" id="peopleSidebar">
+                    <a class="nav-link" href="clients.php">Clients</a>
+                    <a class="nav-link" href="students.php">Students</a>
+                    <a class="nav-link" href="tutors.php">Tutors</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">

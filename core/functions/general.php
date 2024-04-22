@@ -12,7 +12,7 @@ function logged_in_redirect() {
 
 function protect_page() {
 	if (logged_in() === false) {
-		header('Location: protected.php');
+		header('Location: index.php');
 		exit();
 	}
 }
