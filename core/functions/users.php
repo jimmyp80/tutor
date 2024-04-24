@@ -115,6 +115,24 @@ function change_user_password($user_id, $current_password, $new_password) {
 	}
 }
 
+//*****CLIENT ACTIONS*****
+//Register new client
+function register_client($title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $phone2, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder) {
+	global $conn;
+	$stmt = $conn->prepare("INSERT INTO clients (title, first_name, last_name, email, status, dob, address_1, address_2, city, county, postcode, country, phone_1, phone_2, timezone, client_manager, receive_sms, lesson_reminders, invoice_reminders, balance_reminders) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	$stmt->bind_param("ssssssssssssssssiiii", $title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $phone2, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder);
+	$stmt->execute();
+}
+
+//Check if client already exists
+function client_exists($email) {
+	global $conn;
+	$email  = sanitize($email);
+	$result = mysqli_query($conn, "SELECT COUNT(id) FROM clients WHERE email = '$email'");
+	$row    = mysqli_fetch_row($result);
+	return ($row[0] == 1) ? true : false;
+}
+
 //*****SAVE CONTACT*****
 
 function save_contact($type, $title, $firstname, $lastname, $email, $mobile, $phone, $status, $address1, $address2, $city, $county, $postcode, $country, $latitude, $longitude, $notes, $userId) {

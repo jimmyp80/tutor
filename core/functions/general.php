@@ -38,4 +38,3 @@ function sanitize($data) {
 function output_errors($errors) {
 	return '<ul id="errorsArray">' . implode('</li><li>', $errors) . '</ul>';
 }
-?>

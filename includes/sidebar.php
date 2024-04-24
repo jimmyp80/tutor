@@ -27,9 +27,9 @@
                     <span class="nav-link-text ms-1">People</span>
                 </a>
                 <div class="collapse" id="peopleSidebar">
-                    <a class="nav-link" href="clients.php">Clients</a>
-                    <a class="nav-link" href="students.php">Students</a>
-                    <a class="nav-link" href="tutors.php">Tutors</a>
+                    <a class="nav-link <?php if (basename($_SERVER['REQUEST_URI']) == 'clients.php') {echo 'bg-info';}?>" href="clients.php">Clients</a>
+                    <a class="nav-link <?php if (basename($_SERVER['REQUEST_URI']) == 'students.php') {echo 'bg-info';}?>" href="students.php">Students</a>
+                    <a class="nav-link <?php if (basename($_SERVER['REQUEST_URI']) == 'tutors.php') {echo 'bg-info';}?>" href="tutors.php">Tutors</a>
                 </div>
             </li>
             <li class="nav-item">

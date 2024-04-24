@@ -2,22 +2,24 @@
 include 'core/init.php';
 protect_page();
 include 'includes/overall/header.php';
+$queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, first_name");
 ?>
     <div class="container-fluid py-4">
         <div class="row min-vh-80 h-100">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <h4 class="float-start" id="clientMainTitle">Clients</h4>
-                                <h4 class="float-start" id="clientAddTitle" style="display:none;">Add New Client</h4>
-                                <button type="button" class="btn btn-primary btn-sm float-end" id="clientAddBtn" onclick="clientToggle()">
-                                    <span class="material-symbols-outlined">person_add</span>
-                                </button>
-                                <a href="" class="material-symbols-outlined float-end" id="clientMainBtn" style="display:none;" onclick="clientToggle()">close</a>
+                        <div class="card my-4">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+                                    <h5 class="float-start text-white" id="clientMainTitle">Clients</h5>
+                                    <h5 class="float-start text-white" id="clientAddTitle" style="display:none;">Add New Client</h5>
+                                    <button type="button" class="btn btn-primary btn-sm float-end" id="clientAddBtn" onclick="clientToggle()">
+                                        <span class="material-symbols-outlined">person_add</span>
+                                    </button>
+                                    <a href="" class="material-symbols-outlined float-end" id="clientMainBtn" style="display:none;" onclick="clientToggle()">close</a>
+                                </div>
                             </div>
-                            <hr class="dark horizontal my-0 mx-5">
                             <div class="card-body" id="clientMainBody">
                                 <div class="nav-wrapper position-relative end-0">
                                     <ul class="nav nav-pills nav-fill p-1" role="tablist">
@@ -42,7 +44,31 @@ include 'includes/overall/header.php';
                                     </ul>
                                     <div class="tab-content">
                                         <div id="liveTab" class="container tab-pane active"><br>
-                                            <h5>Live clients</h5>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                                                            <th class="text-secondary opacity-7"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        foreach($queryClient as $row) {
+                                                            echo '
+                                                            <tr>
+                                                                <td>'.$row['first_name'].' '.$row['last_name'].'</td>
+                                                                <td>'.$row['email'].'</td>
+                                                                <td>'.$row['city'].', '.$row['postcode'].', '.$row['country'].'</td>
+                                                                <td>'.$row['phone_1'].'</td>
+                                                            </tr>';
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <div id="prospectiveTab" class="container tab-pane"><br>
                                             <h5>Prospective clients</h5>
@@ -54,7 +80,7 @@ include 'includes/overall/header.php';
                                 </div>
                             </div>
                             <div class="card-body" id="clientAddBody" style="display:none;">
-                                <form role="form" action="" method="" autocomplete="off">
+                                <form role="form" action="add-clients.php" method="post" autocomplete="off">
                                     <div class="row">
                                         <fieldset class="col-md-3">
                                             <legend>Basic Details</legend>
@@ -146,19 +172,19 @@ include 'includes/overall/header.php';
                                         <fieldset class="col-md-3">
                                             <legend>Notification Settings</legend>
                                             <div class="form-check form-switch pt-4 mb-4">
-                                                <input class="form-check-input" type="checkbox" name="smsReceive" id="smsReceive" checked>
+                                                <input class="form-check-input" type="checkbox" name="smsReceive" id="smsReceive" value="1">
                                                 <label class="form-check-label" for="smsReceive">Receive SMS</label>
                                             </div>
                                             <div class="form-check form-switch mb-4">
-                                                <input class="form-check-input" type="checkbox" name="lessonReminder" id="lessonReminder" checked>
+                                                <input class="form-check-input" type="checkbox" name="lessonReminder" id="lessonReminder" value="1">
                                                 <label class="form-check-label" for="lessonReminder">Lesson reminders</label>
                                             </div>
                                             <div class="form-check form-switch mb-4">
-                                                <input class="form-check-input" type="checkbox" name="invoiceReminder" id="invoiceReminder" checked>
+                                                <input class="form-check-input" type="checkbox" name="invoiceReminder" id="invoiceReminder" value="1">
                                                 <label class="form-check-label" for="invoiceReminder">Invoice reminders</label>
                                             </div>
                                             <div class="form-check form-switch mb-4">
-                                                <input class="form-check-input" type="checkbox" name="balanceReminder" id="balanceReminder" checked>
+                                                <input class="form-check-input" type="checkbox" name="balanceReminder" id="balanceReminder" value="1">
                                                 <label class="form-check-label" for="balanceReminder">Account balance reminders</label>
                                             </div>
                                         </fieldset>
