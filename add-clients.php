@@ -16,7 +16,6 @@ if (empty($_POST) === false && empty($errors)) {
     $postcode        = sanitize($_POST['clientRegPostcode']);
     $country         = sanitize($_POST['clientRegCountry']);
     $phone1          = sanitize($_POST['clientRegPhone1']);
-    $phone2          = sanitize($_POST['clientRegPhone2']);
     $timezone        = sanitize($_POST['clientRegTimezone']);
     $clientMgr       = sanitize($_POST['clientRegCM']);
     $smsReceive      = sanitize($_POST['smsReceive']);
@@ -32,7 +31,7 @@ if (empty($_POST) === false && empty($errors)) {
 }
 
 if (empty($_POST) === false && empty($errors)) {
-    register_client($title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $phone2, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder);
+    register_client($title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder);
     header('Location: clients.php?success');
     exit();
 } else if (empty($errors) === false) {

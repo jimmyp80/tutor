@@ -21,4 +21,3 @@ if (logged_in()) {
 }
 
 $errors = array();
-?>

@@ -17,14 +17,6 @@ function protect_page() {
 	}
 }
 
-function admin_protect() {
-	global $user_data;
-	if (has_access($user_data['user_id'], 1) === false) {
-		header('Location: ./');
-		exit();
-	}
-}
-
 function array_sanitize(&$item) {
 	global $conn;
 	$item = htmlentities(strip_tags(mysqli_real_escape_string($conn, $item)));

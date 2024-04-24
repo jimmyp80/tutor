@@ -11,7 +11,7 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
                     <div class="col-12 mb-xl-0 mb-4">
                         <div class="card my-4">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+                                <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3 px-4" style="height:85px;">
                                     <h5 class="float-start text-white" id="clientMainTitle">Clients</h5>
                                     <h5 class="float-start text-white" id="clientAddTitle" style="display:none;">Add New Client</h5>
                                     <button type="button" class="btn btn-primary btn-sm float-end" id="clientAddBtn" onclick="clientToggle()">
@@ -45,14 +45,13 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
                                     <div class="tab-content">
                                         <div id="liveTab" class="container tab-pane active"><br>
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
-                                                            <th class="text-secondary opacity-7"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -60,8 +59,8 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
                                                         foreach($queryClient as $row) {
                                                             echo '
                                                             <tr>
-                                                                <td>'.$row['first_name'].' '.$row['last_name'].'</td>
-                                                                <td>'.$row['email'].'</td>
+                                                                <td><a href="client-page.php?'.$row['id'].'">'.$row['first_name'].' '.$row['last_name'].'</a></td>
+                                                                <td><a href="mailto:'.$row['email'].'">'.$row['email'].'</a></td>
                                                                 <td>'.$row['city'].', '.$row['postcode'].', '.$row['country'].'</td>
                                                                 <td>'.$row['phone_1'].'</td>
                                                             </tr>';
@@ -204,12 +203,12 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
         </div>
         <script>
             function clientToggle() {
-                var main = document.getElementById("clientMainBody");
-                var mainBtn = document.getElementById("clientMainBtn");
-                var mainTitle = document.getElementById("clientMainTitle");
-                var add = document.getElementById("clientAddBody");
-                var addBtn = document.getElementById("clientAddBtn");
-                var addTitle = document.getElementById("clientAddTitle");
+                const main = document.getElementById("clientMainBody");
+                const mainBtn = document.getElementById("clientMainBtn");
+                const mainTitle = document.getElementById("clientMainTitle");
+                const add = document.getElementById("clientAddBody");
+                const addBtn = document.getElementById("clientAddBtn");
+                const addTitle = document.getElementById("clientAddTitle");
                 if (add.style.display === "none") {
                     main.style.display = "none";
                     mainBtn.style.display = "block";

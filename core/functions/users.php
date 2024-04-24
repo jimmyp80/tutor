@@ -117,10 +117,10 @@ function change_user_password($user_id, $current_password, $new_password) {
 
 //*****CLIENT ACTIONS*****
 //Register new client
-function register_client($title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $phone2, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder) {
+function register_client($title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder) {
 	global $conn;
-	$stmt = $conn->prepare("INSERT INTO clients (title, first_name, last_name, email, status, dob, address_1, address_2, city, county, postcode, country, phone_1, phone_2, timezone, client_manager, receive_sms, lesson_reminders, invoice_reminders, balance_reminders) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-	$stmt->bind_param("ssssssssssssssssiiii", $title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $phone2, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder);
+	$stmt = $conn->prepare("INSERT INTO clients (title, first_name, last_name, email, status, dob, address_1, address_2, city, county, postcode, country, phone_1, timezone, client_manager, receive_sms, lesson_reminders, invoice_reminders, balance_reminders) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	$stmt->bind_param("sssssssssssssssiiii", $title, $firstName, $lastName, $email, $status, $dob, $address1, $address2, $city, $county, $postcode, $country, $phone1, $timezone, $clientMgr, $smsReceive, $lessonReminder, $invoiceReminder, $balanceReminder);
 	$stmt->execute();
 }
 

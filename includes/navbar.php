@@ -1,4 +1,4 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl bg-gradient-info mt-3 mb-0" id="navbarBlur" navbar-scroll="true">
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl bg-gradient-dark mt-3 mb-0" id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-3">
         <a class="navbar-brand text-white py-0" href="./"><span class="material-icons" style="font-size:40px; color:yellow;">tungsten</span></a>
         <form class="d-flex">
