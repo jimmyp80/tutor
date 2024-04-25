@@ -2,27 +2,50 @@
 include 'core/init.php';
 protect_page();
 include 'includes/overall/header.php';
+$queryStudent = mysqli_query($conn, "SELECT * FROM students ORDER BY last_name, first_name");
 ?>
     <div class="container-fluid py-4">
         <div class="row min-vh-80 h-100">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <h4 class="float-start" id="studentMainTitle">Students</h4>
-                                <h4 class="float-start" id="studentAddTitle" style="display:none;">Add New Student</h4>
-                                <button type="button" class="btn btn-primary btn-sm float-end" id="studentAddBtn" onclick="studentToggle()">
-                                    <span class="material-symbols-outlined">person_add</span>
-                                </button>
-                                <a href="" class="material-symbols-outlined float-end" id="studentMainBtn" style="display:none;" onclick="studentToggle()">close</a>
+                        <div class="card my-4">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3 px-4" style="height:85px;">
+                                    <h5 class="float-start text-white" id="studentMainTitle">Students</h5>
+                                    <h5 class="float-start text-white" id="studentAddTitle" style="display:none;">Add New Student</h5>
+                                    <button type="button" class="btn btn-primary btn-sm float-end" id="studentAddBtn" onclick="studentToggle()">
+                                        <span class="material-symbols-outlined">person_add</span>
+                                    </button>
+                                    <a href="" class="material-symbols-outlined float-end" id="studentMainBtn" style="display:none;" onclick="studentToggle()">close</a>
+                                </div>
                             </div>
-                            <hr class="dark horizontal my-0 mx-5">
                             <div class="card-body" id="studentMainBody">
-                                Students Main Area
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Paying Client</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach($queryStudent as $row) {
+                                                echo '
+                                                <tr>
+                                                    <td><a href="student-page.php?'.$row['id'].'">'.$row['first_name'].' '.$row['last_name'].'</a></td>
+                                                    <td>'.$row['client'].'</td>
+                                                    <td>'.$row['city'].', '.$row['postcode'].', '.$row['country'].'</td>
+                                                </tr>';
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="card-body" id="studentAddBody" style="display:none;">
-                                <form role="form" action="" method="" autocomplete="off">
+                                <form role="form" action="add-student.php" method="post" autocomplete="off">
                                     <div class="row">
                                         <fieldset class="col-md-3">
                                             <legend>Basic Details</legend>
@@ -54,18 +77,24 @@ include 'includes/overall/header.php';
                                                 <input type="text" class="form-control" name="studentRegDOB" id="studentRegDOB">
                                             </div>
                                             <div class="input-group input-group-static mb-4">
-                                                <label class="ms-0" hidden for="studentRegYear">Academic Year</label>
-                                                <select class="form-control" required name="studentRegYear" id="studentRegYear">
-                                                    <option>Academic Year</option>
-                                                </select>
-                                            </div>
-                                            <div class="input-group input-group-static mb-4">
                                                 <label class="ms-0" hidden for="studentRegGender">Gender</label>
-                                                <select class="form-control" required name="studentRegGender" id="studentRegGender">
+                                                <select class="form-control" name="studentRegGender" id="studentRegGender">
                                                     <option>Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                     <option>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group input-group-static mb-4">
+                                                <label class="ms-0" hidden for="studentRegYear">Academic Year</label>
+                                                <select class="form-control" name="studentRegYear" id="studentRegYear">
+                                                    <option>Academic Year</option>
+                                                    <option>YR</option>
+                                                    <option>Y1</option>
+                                                    <option>Y2</option>
+                                                    <option>Y3</option>
+                                                    <option>Y4</option>
+                                                    <option>Y5</option>
                                                 </select>
                                             </div>
                                         </fieldset>
@@ -96,12 +125,8 @@ include 'includes/overall/header.php';
                                                 <input type="text" class="form-control" name="studentRegCountry" id="studentRegCountry">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
-                                                <label class="form-label" for="studentRegPhone1">Phone 1</label>
+                                                <label class="form-label" for="studentRegPhone1">Phone</label>
                                                 <input type="tel" class="form-control" name="studentRegPhone1" id="studentRegPhone1">
-                                            </div>
-                                            <div class="input-group input-group-dynamic mb-4">
-                                                <label class="form-label" for="studentRegPhone2">Phone 2</label>
-                                                <input type="tel" class="form-control" name="studentRegPhone2" id="studentRegPhone2">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
                                                 <label class="form-label" for="studentRegTimezone">Timezone</label>
@@ -109,22 +134,22 @@ include 'includes/overall/header.php';
                                             </div>
                                         </fieldset>
                                         <fieldset class="col-md-3">
-                                            <legend>Client Info</legend>
+                                            <legend>Business Attachments</legend>
                                             <div class="input-group input-group-static mb-4">
-                                                <label class="ms-0" hidden for="studentRegClient">Associated Client</label>
-                                                <select class="form-control" required name="studentRegClient" id="studentRegClient">
-                                                    <option>Associated Client</option>
+                                                <label class="ms-0" hidden for="client">Paying Client</label>
+                                                <select class="form-control" required name="client" id="client">
+                                                    <option>Paying Client*</option>
                                                 </select>
                                             </div>
                                         </fieldset>
                                         <fieldset class="col-md-3">
                                             <legend>Notification Settings</legend>
                                             <div class="form-check form-switch pt-4 mb-4">
-                                                <input class="form-check-input" type="checkbox" name="smsReceive" id="smsReceive" checked>
+                                                <input class="form-check-input" type="checkbox" name="smsReceive" id="smsReceive" value="1">
                                                 <label class="form-check-label" for="smsReceive">Receive SMS</label>
                                             </div>
                                             <div class="form-check form-switch mb-4">
-                                                <input class="form-check-input" type="checkbox" name="lessonReminder" id="lessonReminder" checked>
+                                                <input class="form-check-input" type="checkbox" name="lessonReminder" id="lessonReminder" value="1">
                                                 <label class="form-check-label" for="lessonReminder">Lesson reminders</label>
                                             </div>
                                         </fieldset>
@@ -144,12 +169,12 @@ include 'includes/overall/header.php';
         </div>
         <script>
             function studentToggle() {
-                var main = document.getElementById("studentMainBody");
-                var mainBtn = document.getElementById("studentMainBtn");
-                var mainTitle = document.getElementById("studentMainTitle");
-                var add = document.getElementById("studentAddBody");
-                var addBtn = document.getElementById("studentAddBtn");
-                var addTitle = document.getElementById("studentAddTitle");
+                const main = document.getElementById("studentMainBody");
+                const mainBtn = document.getElementById("studentMainBtn");
+                const mainTitle = document.getElementById("studentMainTitle");
+                const add = document.getElementById("studentAddBody");
+                const addBtn = document.getElementById("studentAddBtn");
+                const addTitle = document.getElementById("studentAddTitle");
                 if (add.style.display === "none") {
                     main.style.display = "none";
                     mainBtn.style.display = "block";

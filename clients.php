@@ -79,7 +79,7 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
                                 </div>
                             </div>
                             <div class="card-body" id="clientAddBody" style="display:none;">
-                                <form role="form" action="add-clients.php" method="post" autocomplete="off">
+                                <form role="form" action="add-client.php" method="post" autocomplete="off">
                                     <div class="row">
                                         <fieldset class="col-md-3">
                                             <legend>Basic Details</legend>
@@ -147,12 +147,8 @@ $queryClient = mysqli_query($conn, "SELECT * FROM clients ORDER BY last_name, fi
                                                 <input type="text" class="form-control" name="clientRegCountry" id="clientRegCountry">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
-                                                <label class="form-label" for="clientRegPhone1">Phone 1</label>
+                                                <label class="form-label" for="clientRegPhone1">Phone</label>
                                                 <input type="tel" class="form-control" name="clientRegPhone1" id="clientRegPhone1">
-                                            </div>
-                                            <div class="input-group input-group-dynamic mb-4">
-                                                <label class="form-label" for="clientRegPhone2">Phone 2</label>
-                                                <input type="tel" class="form-control" name="clientRegPhone2" id="clientRegPhone2">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
                                                 <label class="form-label" for="clientRegTimezone">Timezone</label>

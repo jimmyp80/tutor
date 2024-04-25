@@ -133,6 +133,15 @@ function client_exists($email) {
 	return ($row[0] == 1) ? true : false;
 }
 
+//*****STUDENT ACTIONS*****
+//Register new student
+function register_student($title, $firstName, $lastName, $email, $dob, $gender, $academicYear, $address1, $address2, $city, $county, $postcode, $country, $phone1, $timezone, $client, $smsReceive, $lessonReminder) {
+	global $conn;
+	$stmt = $conn->prepare("INSERT INTO students (title, first_name, last_name, email, dob, gender, academic_year, address_1, address_2, city, county, postcode, country, phone_1, timezone, client, receive_sms, lesson_reminders) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	$stmt->bind_param("ssssssssssssssssii", $title, $firstName, $lastName, $email, $dob, $gender, $academicYear, $address1, $address2, $city, $county, $postcode, $country, $phone1, $timezone, $client, $smsReceive, $lessonReminder);
+	$stmt->execute();
+}
+
 //*****SAVE CONTACT*****
 
 function save_contact($type, $title, $firstname, $lastname, $email, $mobile, $phone, $status, $address1, $address2, $city, $county, $postcode, $country, $latitude, $longitude, $notes, $userId) {

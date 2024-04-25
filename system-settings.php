@@ -69,7 +69,7 @@ include 'includes/overall/header.php';
                                                         <div class="nav-wrapper position-relative end-0">
                                                             <form role="form" action="" method="post" autocomplete="off">
                                                                 <div class="row">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group input-group-dynamic mb-4">
                                                                             <label class="form-label" for="companyName">Company Name</label>
                                                                             <input type="text" class="form-control" name="companyName" id="companyName">
@@ -79,7 +79,7 @@ include 'includes/overall/header.php';
                                                                             <input type="file" id="companyLogo">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-8">
                                                                         <div class="input-group input-group-dynamic mb-4">
                                                                             <textarea class="form-control" style="resize:none;" rows="8" placeholder="Company Description..." spellcheck="false"></textarea>
                                                                         </div>
