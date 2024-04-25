@@ -52,11 +52,11 @@ include 'includes/overall/header.php';
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
                                                 <label class="form-label" for="tutorRegDOB">Date of Birth</label>
-                                                <input type="text" class="form-control" name="tutorRegDOB" id="tutorRegDOB">
+                                                <input type="text" class="form-control datePicker" name="tutorRegDOB" id="tutorRegDOB">
                                             </div>
                                             <div class="input-group input-group-static mb-4">
                                                 <label class="ms-0" hidden for="tutorRegGender">Gender</label>
-                                                <select class="form-control" required name="tutorRegGender" id="tutorRegGender">
+                                                <select class="form-control" name="tutorRegGender" id="tutorRegGender">
                                                     <option>Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
@@ -66,7 +66,7 @@ include 'includes/overall/header.php';
                                             <div class="input-group input-group-static mb-4">
                                                 <label class="ms-0" hidden for="tutorRegStatus">Status</label>
                                                 <select class="form-control" required name="tutorRegStatus" id="tutorRegStatus">
-                                                    <option>Status</option>
+                                                    <option>Status*</option>
                                                     <option>Approved</option>
                                                     <option>Pending</option>
                                                     <option>Dormant</option>
@@ -105,10 +105,6 @@ include 'includes/overall/header.php';
                                                 <input type="tel" class="form-control" name="tutorRegPhone1" id="tutorRegPhone1">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
-                                                <label class="form-label" for="tutorRegPhone2">Phone 2</label>
-                                                <input type="tel" class="form-control" name="tutorRegPhone2" id="tutorRegPhone2">
-                                            </div>
-                                            <div class="input-group input-group-dynamic mb-4">
                                                 <label class="form-label" for="tutorRegTimezone">Timezone</label>
                                                 <input type="text" class="form-control" name="tutorRegTimezone" id="tutorRegTimezone">
                                             </div>
@@ -121,7 +117,7 @@ include 'includes/overall/header.php';
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
                                                 <label class="form-label" for="backgroundCheckDate">Background Check Date</label>
-                                                <input type="text" class="form-control" name="backgroundCheckDate" id="backgroundCheckDate">
+                                                <input type="text" class="form-control datePicker" name="backgroundCheckDate" id="backgroundCheckDate">
                                             </div>
                                             <div class="input-group input-group-dynamic mb-4">
                                                 <textarea class="form-control" style="resize:none;" rows="8" placeholder="Teaching experience..." spellcheck="false"></textarea>
